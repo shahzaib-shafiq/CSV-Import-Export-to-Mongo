@@ -13,7 +13,7 @@ app.use(express.static(path.resolve(__dirname, "public")));
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../Public/uploads");
+    cb(null, "./Public/uploads");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -22,6 +22,8 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-app.post("/importUser", upload.single("file"));
+const userController = require("../Controller/userCotroller");
+
+app.post("/importUser", upload.single("file"), userController.importUser);
 
 module.exports = app;

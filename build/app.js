@@ -51,3 +51,6 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 startServer();
+var userRoute = require("./Routes/userRoute");
+app.use("/", userRoute);
+module.exports = app;
